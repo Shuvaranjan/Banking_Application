@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -22,6 +23,7 @@ import javax.swing.SwingConstants;
 import org.w3c.dom.events.MouseEvent;
 
 import Database.MyJDBC;
+import Database.User;
 
 public class RegisterGUI extends Baseframe {
 
@@ -34,6 +36,9 @@ public class RegisterGUI extends Baseframe {
 
     @Override
     protected void addGuiComponents() {
+
+        ImageIcon icon1 = new ImageIcon("Banking\\src\\MEDIA\\bank (3).png");
+        this.setIconImage(icon1.getImage());
         ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\icons8-registration-100.png");
         JLabel imgLabel = new JLabel();
         imgLabel.setIcon(icon);
@@ -58,23 +63,37 @@ public class RegisterGUI extends Baseframe {
 
         // create Username TextField
         JTextField UsernameField = new JTextField();
-        UsernameField.setBounds(18, 222, 370, 25);
-        UsernameField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.BLACK));
+        UsernameField.setBounds(18, 222, 370, 30);
+        UsernameField.setBorder(BorderFactory.createLoweredBevelBorder());
         UsernameField.setFont(new Font("Arial", Font.PLAIN, 15));
-        UsernameField.setForeground(Color.decode("#FDEA00"));
-        UsernameField.setOpaque(false);
+        UsernameField.setForeground(Color.BLACK);
+        UsernameField.setBackground(Color.white);
         UsernameField.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                UsernameField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+                UsernameField.setBackground(Color.LIGHT_GRAY);
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-                UsernameField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.BLACK));
+                UsernameField.setBorder(BorderFactory.createLoweredBevelBorder());
+                UsernameField.setBackground(Color.white);
             }
 
+
+        });
+
+      
+
+        UsernameField.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                UsernameField.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+                UsernameField.setBackground(Color.white);
+            }
+            
         });
 
         // create Password Label
@@ -85,23 +104,33 @@ public class RegisterGUI extends Baseframe {
 
         // create Password TextField
         JPasswordField PasswordField = new JPasswordField();
-        PasswordField.setBounds(18, 320, 370, 25);
-        PasswordField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.BLACK));
+        PasswordField.setBounds(18, 320, 370, 30);
+        PasswordField.setBorder(BorderFactory.createLoweredBevelBorder());
         PasswordField.setFont(new Font("Arial", Font.PLAIN, 15));
-        PasswordField.setForeground(Color.decode("#FDEA00"));
-        PasswordField.setOpaque(false);
+        PasswordField.setForeground(Color.BLACK);
         PasswordField.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                PasswordField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+                PasswordField.setBackground(Color.LIGHT_GRAY);
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-                PasswordField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.BLACK));
+               PasswordField.setBorder(BorderFactory.createLoweredBevelBorder());
+               PasswordField.setBackground(Color.white);
             }
 
+        });
+
+        PasswordField.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+               PasswordField.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+               PasswordField.setBackground(Color.white);
+            }
+            
         });
 
         // create Confirm-Password Label
@@ -112,28 +141,38 @@ public class RegisterGUI extends Baseframe {
 
         // create Confirm-Password TextField
         JPasswordField ConfirmPasswordField = new JPasswordField();
-        ConfirmPasswordField.setBounds(18, 420, 370, 25);
-        ConfirmPasswordField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.BLACK));
-        ConfirmPasswordField.setFont(new Font("Arjal", Font.PLAIN, 15));
-        ConfirmPasswordField.setForeground(Color.decode("#FDEA00"));
-        ConfirmPasswordField.setOpaque(false);
+        ConfirmPasswordField.setBounds(18, 420, 370, 30);
+        ConfirmPasswordField.setBorder(BorderFactory.createLoweredBevelBorder());
+        ConfirmPasswordField.setFont(new Font("Arial", Font.PLAIN, 15));
+        ConfirmPasswordField.setForeground(Color.BLACK);
         ConfirmPasswordField.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                ConfirmPasswordField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+                ConfirmPasswordField.setBackground(Color.LIGHT_GRAY);
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-                ConfirmPasswordField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.BLACK));
+                ConfirmPasswordField.setBorder(BorderFactory.createLoweredBevelBorder());
+                ConfirmPasswordField.setBackground(Color.white);
             }
 
         });
 
+        ConfirmPasswordField.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+               ConfirmPasswordField.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+               ConfirmPasswordField.setBackground(Color.white);
+            }
+            
+        });
+
         // create Gui close button
-        JButton closeButton = new JButton("X");
-        closeButton.setBounds(394, 0, 30, 20);
+        JButton closeButton = new JButton("x");
+        closeButton.setBounds(394, -5, 30, 26);
         closeButton.setBackground(Color.decode("#3F22DD"));
         closeButton.setForeground(Color.RED);
         closeButton.setFont(new Font("Arial Black", Font.PLAIN, 18));
@@ -154,7 +193,19 @@ public class RegisterGUI extends Baseframe {
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\icons8-question-mark-64.png");
+                int a = JOptionPane.showConfirmDialog(RegisterGUI.this, "<html><p style=\"color: black; font-family: Roboto; font-size:15px\">Do you want to exit it ?</p></html>","",JOptionPane.YES_NO_OPTION,getDefaultCloseOperation(),icon);
+                if (a == JOptionPane.YES_OPTION) {
+                  dispose();
+                  ImageIcon icon8 = new ImageIcon("Banking\\src\\MEDIA\\icons8-smiling-80.png");
+                  JOptionPane.showMessageDialog(RegisterGUI.this, "<html><p style=\"color:red; font-size:25px; font-family:Agency FB; text-align:center;\">'Thank You'<br></p> <p style=\"color:black; font-size:15px;\">For using our Application</p></html>", ":)", getDefaultCloseOperation(), icon8);
+                }  
+                else if (a == JOptionPane.NO_OPTION) {
+                  //Nothing changes, just closes the dialog box
+                }
+                else{
+                  //Nothing changes, just close the dialog box
+                }
             }
 
         });
@@ -193,8 +244,48 @@ public class RegisterGUI extends Baseframe {
                 // get confirm-password
                 String repassword = String.valueOf(ConfirmPasswordField.getPassword());
 
+                
+                if (username.equals("") && password.equals("") && repassword.equals("")) {
+                
+                    ImageIcon icon5 = new ImageIcon(
+                            "Banking\\src\\MEDIA\\icons8-keyboard-50.png");
+                    JOptionPane.showMessageDialog(RegisterGUI.this, "Please Enter the empty fields...", "",
+                            getDefaultCloseOperation(), icon5);
+                } else if (!username.equals("") && password.equals("") && repassword.equals("")) {
+                    ImageIcon icon5 = new ImageIcon(
+                            "Banking\\src\\MEDIA\\icons8-keyboard-50.png");
+                    JOptionPane.showMessageDialog(RegisterGUI.this, "Please Enter the empty fields...", "",
+                            getDefaultCloseOperation(), icon5);
+                } else if (username.equals("") && !password.equals("") && repassword.equals("")) {
+                    ImageIcon icon5 = new ImageIcon(
+                            "Banking\\src\\MEDIA\\icons8-keyboard-50.png");
+                    JOptionPane.showMessageDialog(RegisterGUI.this, "Please Enter the empty fields...", "",
+                            getDefaultCloseOperation(), icon5);
+                } else if (!username.equals("") && !password.equals("") && repassword.equals("")) {
+                    ImageIcon icon5 = new ImageIcon(
+                            "Banking\\src\\MEDIA\\icons8-keyboard-50.png");
+                    JOptionPane.showMessageDialog(RegisterGUI.this, "Please Enter Confirm Password...", "",
+                            getDefaultCloseOperation(), icon5);
+                } else if (username.equals("") && !password.equals("") && !repassword.equals("")) {
+                    ImageIcon icon5 = new ImageIcon(
+                            "Banking\\src\\MEDIA\\icons8-keyboard-50.png");
+                    JOptionPane.showMessageDialog(RegisterGUI.this, "Please Enter Username...", "",
+                            getDefaultCloseOperation(), icon5);
+                } else if (!username.equals("") && password.equals("") && !repassword.equals("")) {
+                    ImageIcon icon5 = new ImageIcon(
+                            "Banking\\src\\MEDIA\\icons8-keyboard-50.png");
+                    JOptionPane.showMessageDialog(RegisterGUI.this, "Please Enter Password...", "",
+                            getDefaultCloseOperation(), icon5);
+                } else if (username.equals("") && password.equals("") && !repassword.equals("")) {
+                    ImageIcon icon5 = new ImageIcon(
+                            "Banking\\src\\MEDIA\\icons8-keyboard-50.png");
+                    JOptionPane.showMessageDialog(RegisterGUI.this, "Please Enter the empty fields...", "(empty)", getDefaultCloseOperation(), icon5);
+                }
+
                 // we will need to the validate user input
-                if (ValidateUserInput(username, password, repassword)) {
+                else if (ValidateUserInput(username, password, repassword)) {
+                   // else if(ValidateUserInput(password, repassword)){
+                        
                     if (MyJDBC.register(username, password)) {
                         // register success
                         // dispose of this GUI
@@ -209,10 +300,15 @@ public class RegisterGUI extends Baseframe {
                         JOptionPane.showMessageDialog(loginGUI, "\t\t\tRegister Account Successfully...", "Done",
                                 getDefaultCloseOperation(), icon2);
                     } else {
+                     
                         ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\icons8-warning-50.png");
                         JOptionPane.showMessageDialog(RegisterGUI.this, "ERROR: Username had already taken", "˙◠˙",
                                 getDefaultCloseOperation(), icon);
                     }
+
+                    
+
+
 
                 } else {
                     ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\icons8-warning-50.png");
@@ -220,7 +316,7 @@ public class RegisterGUI extends Baseframe {
                     JOptionPane.showMessageDialog(RegisterGUI.this,
                             "ERROR: username must be 6 characters Long\n" +
                                     "or/and password must be matched",
-                            "Oops", getDefaultCloseOperation(), icon);
+                            "Oops !", getDefaultCloseOperation(), icon);
                 }
             }
 
@@ -283,6 +379,14 @@ public class RegisterGUI extends Baseframe {
             return false;
         }
         // passes validation
+        return true;
+    }
+
+    private boolean ValidateUserInput(String password, String repassword){
+        if (!password.equals(repassword)) {
+            return false;
+        }
+
         return true;
     }
 }

@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package splashscreen;
 
 import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JDialog;
 
-/**
- *
- * @author RAVEN
- */
+
 public class SplashScreen extends javax.swing.JDialog {
 
     /**
@@ -50,7 +45,8 @@ public class SplashScreen extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MEDIA/atm-machine.png"))); // NOI18N
 
-        lbStatus.setForeground(new java.awt.Color(0,0,0));
+        lbStatus.setForeground(new java.awt.Color(255,255,255));
+        lbStatus.setFont(new Font("Arial Black", Font.PLAIN, 15));
         lbStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbStatus.setText("Status");
 
@@ -106,12 +102,12 @@ public class SplashScreen extends javax.swing.JDialog {
                 try {
                    
                    
+                  //  doTask("Loading ...", 20);
                     doTask("Loading ...", 20);
-                    doTask("Loading ...", 40);
-                    doTask("Loading ...", 60);
-                    doTask("Loading ...", 80);
+                    doTask("Loading ...", 45);
+                    doTask("Loading ...", 70);
                     doTask("Loading ...", 100);
-                    doTask("Loading ...", 100);
+                    doTask("--Open--", 100);
                     dispose();
                     curvesPanel1.stop();    //  To Stop animation
                 } catch (Exception e) {
@@ -127,13 +123,10 @@ public class SplashScreen extends javax.swing.JDialog {
         pro.setValue(progress);
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* If you want to, know more details....click below the link
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
@@ -152,7 +145,7 @@ public class SplashScreen extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+    
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {

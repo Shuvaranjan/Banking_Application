@@ -2,9 +2,14 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -52,7 +57,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         // set the Location to center of the BankingApp GUI
         setLocationRelativeTo(bankingAppGUI);
 
-        getContentPane().setBackground(new Color(21, 21, 21));
+        getContentPane().setBackground(new Color(36, 36, 36));
 
         this.bankingAppGUI = bankingAppGUI;
 
@@ -83,7 +88,9 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         enterAmountField.setBounds(15, 80, getWidth() - 50, 40);
         enterAmountField.setFont(new Font("Dialog", Font.BOLD, 20));
         enterAmountField.setHorizontalAlignment(SwingConstants.CENTER);
-        enterAmountField.setBorder(BorderFactory.createLoweredBevelBorder());
+        enterAmountField.setBackground(new Color(255,255,255));
+        enterAmountField.setBorder(BorderFactory.createLineBorder(Color.RED,3));
+        
         add(enterAmountField);
     }
 
@@ -91,6 +98,23 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         actionButton = new JButton(actionButtonType);
         actionButton.setBounds(15, 300, getWidth() - 50, 40);
         actionButton.setFont(new Font("Dialog", Font.BOLD, 20));
+        actionButton.setBackground(new Color(255, 224, 0));
+        actionButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        actionButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        actionButton.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                actionButton.setBorder(BorderFactory.createLoweredBevelBorder());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                actionButton.setBorder(BorderFactory.createRaisedBevelBorder());
+            }
+            
+        });
+       
         actionButton.addActionListener(this);
         add(actionButton);
     }
@@ -109,6 +133,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         enterUserField.setBounds(15, 190, getWidth() - 50, 40);
         enterUserField.setFont(new Font("Dialog", Font.BOLD, 20));
         enterUserField.setHorizontalAlignment(SwingConstants.CENTER);
+        enterUserField.setBorder(BorderFactory.createLineBorder(Color.BLUE,3));
         add(enterUserField);
 
     }
@@ -122,6 +147,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
 
         // display the Vertical scrollbar, when it is required
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
         scrollPane.setBounds(0, 20, getWidth() - 8, getHeight() - 15);
 
@@ -147,10 +173,9 @@ public class BankingAppDialog extends JDialog implements ActionListener {
             transactionAmountlabel.setFont(new Font("Dialog", Font.BOLD, 18));
 
             // create transaction date label
-            JLabel transactioDatelabel = new JLabel(
-                    String.valueOf("<html>" + pastTransaction.getTransactionDate()) + "<br/><br/><br/></html>");
+            JLabel transactioDatelabel = new JLabel(String.valueOf("<html>" + pastTransaction.getTransactionDate()) + "<br/><br/><br/><br/></html>");
             transactioDatelabel.setFont(new Font("Dialog", Font.BOLD, 16));
-            transactioDatelabel.setForeground(new Color(196, 0, 0));
+            transactioDatelabel.setForeground(new Color(0, 2, 218));
 
             // add to the container
             pastTransactionContainer.add(transactiontypeLabel, BorderLayout.WEST);
@@ -196,15 +221,16 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         // update database
         if (MyJDBC.addTransactionToDatabase(transaction) && MyJDBC.updateCurrentBalance(user)) {
             // show success dialog
-            JOptionPane.showMessageDialog(this, transactionType + " Successfully!");
+            ImageIcon img1 = new ImageIcon("Banking\\src\\MEDIA\\icons8-verified-account-50.png");
+            JOptionPane.showMessageDialog(this, transactionType + " Successfully!", "--Done--",getDefaultCloseOperation(),img1);
 
             // reset the fields
             resetFieldsAndUpdateCurrentBalance();
 
         } else {
             // show failture dialog
-       
-            JOptionPane.showMessageDialog(this, transactionType + " Failed...");
+            ImageIcon img2 = new ImageIcon("Banking\\src\\MEDIA\\login failed.png");
+            JOptionPane.showMessageDialog(this, transactionType + " Failed !", "Oops !", getDefaultCloseOperation(), img2);
         }
 
     }
@@ -223,7 +249,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         balancelabel.setText("Balance: ₹" + user.getCurrentBalance());
 
         // update current balance on main GUI
-        bankingAppGUI.getCurrentBalanceField().setText("₹" + user.getCurrentBalance());
+        bankingAppGUI.getCurrentBalanceField().setText(  "₹" + user.getCurrentBalance());
     }
 
     private void handleTransfer(User user, String transferedUser, float amount) {
@@ -232,7 +258,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         if (MyJDBC.transfer(user, transferedUser, amount)) {
             // show success
             ImageIcon img1 = new ImageIcon("Banking\\src\\MEDIA\\icons8-verified-account-50.png");
-            JOptionPane.showMessageDialog(this, "Transfer Successfully...", "Done", getDefaultCloseOperation(), img1);
+            JOptionPane.showMessageDialog(this, "Transfer Successfully...", "--Done--", getDefaultCloseOperation(), img1);
             resetFieldsAndUpdateCurrentBalance();
         } else {
             // show failture dialog

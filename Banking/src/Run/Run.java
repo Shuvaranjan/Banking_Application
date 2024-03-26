@@ -2,7 +2,6 @@
 package Run;
 
 import java.math.BigDecimal;
-
 import Database.User;
 import GUI.BankingAppGUI;
 import GUI.LoginGUI;

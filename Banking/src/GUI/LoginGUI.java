@@ -39,6 +39,8 @@ public class LoginGUI extends Baseframe {
 
     @Override
     protected void addGuiComponents() {
+        ImageIcon icon1 = new ImageIcon("Banking\\src\\MEDIA\\bank (3).png");
+        this.setIconImage(icon1.getImage());
         ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\user (2).png");
         JLabel imgLabel = new JLabel();
         imgLabel.setIcon(icon);
@@ -146,8 +148,8 @@ public class LoginGUI extends Baseframe {
         });
 
         // create Gui close button
-        JButton closeButton = new JButton("X");
-        closeButton.setBounds(394, 0, 30, 20);
+        JButton closeButton = new JButton("x");
+        closeButton.setBounds(394, -5, 30, 26);
         closeButton.setBackground(Color.decode("#3F22DD"));
         closeButton.setForeground(Color.RED);
         closeButton.setFont(new Font("Arial Black", Font.PLAIN, 18));
@@ -169,7 +171,22 @@ public class LoginGUI extends Baseframe {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\icons8-question-mark-64.png");
+                int a = JOptionPane.showConfirmDialog(LoginGUI.this,
+                        "<html><h2 style=\"color: black; font-family:Roboto;\">Do you want to exit it ?</h2></html>",
+                        "", JOptionPane.YES_NO_OPTION, getDefaultCloseOperation(), icon);
+                if (a == JOptionPane.YES_OPTION) {
+                    dispose();
+                    ImageIcon icon8 = new ImageIcon("Banking\\src\\MEDIA\\icons8-smiling-80.png");
+                    JOptionPane.showMessageDialog(LoginGUI.this,
+                            "<html><p style=\"color:red; font-size:25px; font-family:Agency FB; text-align:center;\">'Thank You'<br></p> <p style=\"color:black; font-size:15px; \">For using our Application</p></html>",
+                            ":)", getDefaultCloseOperation(), icon8);
+                } else if (a == JOptionPane.NO_OPTION) {
+                    // Nothing changes, just closes the dialog box
+                } else {
+                    // Nothing changes, just close the dialog box
+                }
+
             }
 
         });
@@ -207,8 +224,19 @@ public class LoginGUI extends Baseframe {
 
                 // Validate_Login
                 User user = MyJDBC.validateLogin(username, password);
-
-                if (user != null) {
+                if (username.equals("") && password.equals("")) {
+                    ImageIcon icon5 = new ImageIcon("Banking\\src\\MEDIA\\icons8-keyboard-50.png");
+                    JOptionPane.showMessageDialog(LoginGUI.this, "Please Enter the empty fields !", "",
+                            getDefaultCloseOperation(), icon5);
+                } else if (username.equals("") && !password.equals("")) {
+                    ImageIcon icon5 = new ImageIcon( "Banking\\src\\MEDIA\\icons8-keyboard-50.png");
+                    JOptionPane.showMessageDialog(LoginGUI.this, "Please Enter the Username...", "",
+                            getDefaultCloseOperation(), icon5);
+                } else if (!username.equals("") && password.equals("")) {
+                    ImageIcon icon5 = new ImageIcon( "Banking\\src\\MEDIA\\icons8-keyboard-50.png");
+                    JOptionPane.showMessageDialog(LoginGUI.this, "Please Enter the Password...", "",
+                            getDefaultCloseOperation(), icon5);
+                } else if (user != null) {
                     // means valid Login
                     // dispose this GUI
                     LoginGUI.this.dispose();
@@ -217,13 +245,12 @@ public class LoginGUI extends Baseframe {
                     BankingAppGUI bankingAppGUI = new BankingAppGUI(user);
                     bankingAppGUI.setVisible(true);
                     ImageIcon img1 = new ImageIcon("Banking\\src\\MEDIA\\icons8-verified-account-50.png");
-                    JOptionPane.showMessageDialog(bankingAppGUI, "Login Successfully !", "Done",
+                    JOptionPane.showMessageDialog(bankingAppGUI, "Login Successfully !", "",
                             getDefaultCloseOperation(), img1);
                 } else {
                     ImageIcon img2 = new ImageIcon("Banking\\src\\MEDIA\\login failed.png");
-                    JOptionPane.showMessageDialog(LoginGUI.this,
-                            "Login Failed...\n" +
-                                    "Please Enter a Valided  Username and Password",
+                    JOptionPane.showMessageDialog(LoginGUI.this,  "Login Failed...\n" +
+                                "Please Enter a Valided  Username and Password",
                             "ERROR !", getDefaultCloseOperation(), img2);
                     UsernameField.setText(null);
                     PasswordField.setText(null);
