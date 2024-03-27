@@ -177,10 +177,13 @@ public class LoginGUI extends Baseframe {
                         "", JOptionPane.YES_NO_OPTION, getDefaultCloseOperation(), icon);
                 if (a == JOptionPane.YES_OPTION) {
                     dispose();
+                  
                     ImageIcon icon8 = new ImageIcon("Banking\\src\\MEDIA\\icons8-smiling-80.png");
                     JOptionPane.showMessageDialog(LoginGUI.this,
                             "<html><p style=\"color:red; font-size:25px; font-family:Agency FB; text-align:center;\">'Thank You'<br></p> <p style=\"color:black; font-size:15px; \">For using our Application</p></html>",
                             ":)", getDefaultCloseOperation(), icon8);
+                    System.exit(0);
+                            
                 } else if (a == JOptionPane.NO_OPTION) {
                     // Nothing changes, just closes the dialog box
                 } else {
