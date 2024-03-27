@@ -23,6 +23,7 @@ import javax.swing.plaf.FontUIResource;
 import Database.User;
 
 public class BankingAppGUI extends Baseframe implements ActionListener {
+    
     private JTextField currentbalancField;
 
     
@@ -35,6 +36,8 @@ public class BankingAppGUI extends Baseframe implements ActionListener {
         super("𝐁𝐚𝐧𝐤𝐢𝐧𝐠™", user);
         // setUndecorated(true);
         getContentPane().setBackground(Color.decode("#181818"));
+       
+        
   
     }
 
