@@ -15,12 +15,14 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -40,6 +42,9 @@ public class BankingAppDialog extends JDialog implements ActionListener {
     private JButton actionButton;
     private JPanel pastTransactioPanel;
     private ArrayList<Transaction> pastTransactions;
+    private JRadioButton rb;
+    private JRadioButton rb2;
+    private JRadioButton rb3;
 
     public BankingAppDialog(BankingAppGUI bankingAppGUI, User user) {
         // set size
@@ -48,6 +53,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         setModal(true);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
 
         setResizable(false);
 
@@ -90,9 +96,55 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         enterAmountField.setHorizontalAlignment(SwingConstants.CENTER);
         enterAmountField.setBackground(new Color(255,255,255));
         enterAmountField.setBorder(BorderFactory.createLineBorder(Color.RED,3));
-        
+       
         add(enterAmountField);
+
+      
     }
+    public void addRadiobutton(){
+        ImageIcon icon1 = new ImageIcon("Banking\\src\\MEDIA\\icons8-credit-card-48.png");
+        JLabel icon1lbl = new JLabel(icon1);
+        icon1lbl.setBounds(15,140,100,80);
+        add(icon1lbl);
+        // add radiobuttons
+        rb = new JRadioButton("Credit card");
+        rb.setBounds(15,100,100,80);
+        rb.setForeground(Color.white);
+        rb.setFont(new Font("Arial", Font.PLAIN, 15));
+        rb.setOpaque(false);
+       
+        
+        ImageIcon icon2 = new ImageIcon("Banking\\src\\MEDIA\\icons8-debit-cards-48.png");
+        JLabel icon1lb2 = new JLabel(icon2);
+        icon1lb2.setBounds(150,140,100,80);
+        add(icon1lb2);
+        rb2 = new JRadioButton("Debit card");
+        rb2.setBounds(150,100,100,80);
+        rb2.setForeground(Color.white);
+        rb2.setFont(new Font("Arial", Font.PLAIN, 15));
+        rb2.setOpaque(false);
+       
+        ImageIcon icon3 = new ImageIcon("Banking\\src\\MEDIA\\online-banking.png");
+        JLabel icon1lb3 = new JLabel(icon3);
+        icon1lb3.setBounds(270,150,100,80);
+        add(icon1lb3);
+        rb3 = new JRadioButton("Netbanking");
+        rb3.setBounds(270,100,100,80);
+        rb3.setForeground(Color.white);
+        rb3.setFont(new Font("Arial", Font.PLAIN, 15));
+        rb3.setOpaque(false);
+    
+        //add radiobuttons functionalities
+        ButtonGroup bg=new ButtonGroup();
+        bg.add(rb);
+        bg.add(rb2);
+        bg.add(rb3);
+        add(rb);
+        add(rb2);
+        add(rb3);
+    }
+
+   
 
     public void addActionButton(String actionButtonType) {
         actionButton = new JButton(actionButtonType);
@@ -101,6 +153,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         actionButton.setBackground(new Color(255, 224, 0));
         actionButton.setBorder(BorderFactory.createRaisedBevelBorder());
         actionButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
         actionButton.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -112,6 +165,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
             public void mouseExited(MouseEvent e) {
                 actionButton.setBorder(BorderFactory.createRaisedBevelBorder());
             }
+
             
         });
        
@@ -122,7 +176,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
     public void addUserField() {
         // enter user label
         enterUserLabel = new JLabel("Enter User:");
-        enterUserLabel.setBounds(0, 160, getWidth() - 20, 20);
+        enterUserLabel.setBounds(0, 140, getWidth() - 20, 20);
         enterUserLabel.setFont(new Font("Dialog", Font.BOLD, 16));
         enterUserLabel.setHorizontalAlignment(SwingConstants.CENTER);
         enterUserLabel.setForeground(Color.WHITE);
@@ -130,7 +184,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
 
         // enter user field
         enterUserField = new JTextField();
-        enterUserField.setBounds(15, 190, getWidth() - 50, 40);
+        enterUserField.setBounds(15, 170, getWidth() - 50, 40);
         enterUserField.setFont(new Font("Dialog", Font.BOLD, 20));
         enterUserField.setHorizontalAlignment(SwingConstants.CENTER);
         enterUserField.setBorder(BorderFactory.createLineBorder(Color.BLUE,3));
@@ -173,7 +227,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
             transactionAmountlabel.setFont(new Font("Dialog", Font.BOLD, 18));
 
             // create transaction date label
-            JLabel transactioDatelabel = new JLabel(String.valueOf("<html>" + pastTransaction.getTransactionDate()) + "<br/><br/><br/><br/></html>");
+            JLabel transactioDatelabel = new JLabel(String.valueOf("<html>" + pastTransaction.getTransactionDate()) + "<br/><br/><br/></html>");
             transactioDatelabel.setFont(new Font("Dialog", Font.BOLD, 16));
             transactioDatelabel.setForeground(new Color(0, 2, 218));
 
@@ -222,7 +276,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         if (MyJDBC.addTransactionToDatabase(transaction) && MyJDBC.updateCurrentBalance(user)) {
             // show success dialog
             ImageIcon img1 = new ImageIcon("Banking\\src\\MEDIA\\icons8-verified-account-50.png");
-            JOptionPane.showMessageDialog(this, transactionType + " Successfully!", "--Done--",getDefaultCloseOperation(),img1);
+            JOptionPane.showMessageDialog(this, "<html><p style=\'color: green; font-size: 12px;\'>"+ " " + transactionType + " Successfully !</p></html>", "--Done--",getDefaultCloseOperation(),img1);
 
             // reset the fields
             resetFieldsAndUpdateCurrentBalance();
@@ -230,7 +284,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         } else {
             // show failture dialog
             ImageIcon img2 = new ImageIcon("Banking\\src\\MEDIA\\login failed.png");
-            JOptionPane.showMessageDialog(this, transactionType + " Failed !", "Oops !", getDefaultCloseOperation(), img2);
+            JOptionPane.showMessageDialog(this, "<html><p style=\'color: red; font-size: 12px;\'>"+ " " + transactionType + " Failed !</p></html>", "Oops !", getDefaultCloseOperation(), img2);
         }
 
     }
@@ -249,21 +303,24 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         balancelabel.setText("Balance: ₹" + user.getCurrentBalance());
 
         // update current balance on main GUI
-        bankingAppGUI.getCurrentBalanceField().setText(  "₹" + user.getCurrentBalance());
+        bankingAppGUI.getCurrentBalanceField().setText( "₹" + user.getCurrentBalance());
     }
 
     private void handleTransfer(User user, String transferedUser, float amount) {
 
+        
+       
         // attemt to perform Transfer
-        if (MyJDBC.transfer(user, transferedUser, amount)) {
+          if (MyJDBC.transfer(user, transferedUser, amount)) {
             // show success
             ImageIcon img1 = new ImageIcon("Banking\\src\\MEDIA\\icons8-verified-account-50.png");
-            JOptionPane.showMessageDialog(this, "Transfer Successfully...", "--Done--", getDefaultCloseOperation(), img1);
+            JOptionPane.showMessageDialog(this, "<html><p style=\'color: green; font-size: 12px;\'>\t\tTransfer Successfully...</p></html>", "--Done--", getDefaultCloseOperation(), img1);
             resetFieldsAndUpdateCurrentBalance();
+        
         } else {
             // show failture dialog
             ImageIcon img2 = new ImageIcon("Banking\\src\\MEDIA\\login failed.png");
-            JOptionPane.showMessageDialog(this, "Transfer Failed !", "Oops !", getDefaultCloseOperation(), img2);
+            JOptionPane.showMessageDialog(this, "<html><p style=\'color: red; font-size: 12px;\'>\t\tTransfer Failed !</p></html>", "Oops !", getDefaultCloseOperation(), img2);
         }
 
     }
@@ -289,9 +346,8 @@ public class BankingAppDialog extends JDialog implements ActionListener {
             int result = user.getCurrentBalance().compareTo(BigDecimal.valueOf(amountValue));
             if (result < 0) {
                 // display Error dialog
-
-                JOptionPane.showMessageDialog(this, "\t\t\t   Insufficient balance !", ":(",
-                        JOptionPane.WARNING_MESSAGE);
+                ImageIcon img2 = new ImageIcon("Banking\\src\\MEDIA\\complain.png");
+                JOptionPane.showMessageDialog(this, "<html><p style=\'color: red; font-size: 12px;\'>\t\tInsufficient balance !</p></html>", ":(",getDefaultCloseOperation(),img2);
 
                 return;
 
@@ -309,5 +365,20 @@ public class BankingAppDialog extends JDialog implements ActionListener {
                 handleTransfer(user, transferedUser, amountValue);
             }
         }
+
+
+
+
+        
     }
+
+    
+
+
+
+
+
+
+    
+    
 }
