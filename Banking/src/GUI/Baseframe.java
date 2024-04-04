@@ -22,7 +22,7 @@ public abstract class Baseframe extends JFrame {
         setTitle(title);
 
         // set size (pixels)
-        setSize(420, 600);
+        setSize(800, 600);
 
         // terminate program whenm GUI is closed
         setDefaultCloseOperation(EXIT_ON_CLOSE);
