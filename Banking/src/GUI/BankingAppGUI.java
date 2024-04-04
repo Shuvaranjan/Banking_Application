@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.FontUIResource;
@@ -25,6 +26,7 @@ import Database.User;
 public class BankingAppGUI extends Baseframe implements ActionListener {
     
     private JTextField currentbalancField;
+    private JRadioButton rb ;
 
     
 
@@ -34,9 +36,25 @@ public class BankingAppGUI extends Baseframe implements ActionListener {
 
     public BankingAppGUI(User user) {
         super("𝐁𝐚𝐧𝐤𝐢𝐧𝐠™", user);
-        // setUndecorated(true);
+        
         getContentPane().setBackground(Color.decode("#181818"));
        
+          // set size (pixels)
+          setSize(420, 600);
+
+          // terminate program whenm GUI is closed
+          setDefaultCloseOperation(EXIT_ON_CLOSE);
+  
+          // set layout to null to have absolute layout which allows us to manually,
+          // specify the size and position of each GUi component
+          setLayout(null);
+  
+          // prevent GUI form being Resisized
+          setResizable(false);
+  
+          // launch the GUI center the of the Screen
+          setLocationRelativeTo(null);
+  
         
   
     }
@@ -51,14 +69,14 @@ public class BankingAppGUI extends Baseframe implements ActionListener {
                 "Hello<b> " + user.getUsername() + "</b><br>" +
                 "<p style=\"color: White;\">What would you like to do today?</p></body></html>";
         JLabel welcomeMessagelabel = new JLabel(WelcomeMessage);
-        welcomeMessagelabel.setBounds(0, 20, getWidth() - 10, 40);
+        welcomeMessagelabel.setBounds(0, 20, getWidth() - 400, 40);
         welcomeMessagelabel.setFont(new FontUIResource("Dialog", Font.PLAIN, 16));
         welcomeMessagelabel.setHorizontalAlignment(SwingConstants.CENTER);
         welcomeMessagelabel.setForeground(Color.WHITE);
 
         // create currentBalance label
         JLabel currentbalanceLabel = new JLabel("<html><u>Current Balance</u></html>");
-        currentbalanceLabel.setBounds(0, 80, getWidth() - 10, 30);
+        currentbalanceLabel.setBounds(0, 80, getWidth() - 400, 30);
         currentbalanceLabel.setFont(new FontUIResource("Dialog", Font.BOLD, 22));
         currentbalanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
         currentbalanceLabel.setForeground(Color.WHITE);
@@ -78,7 +96,7 @@ public class BankingAppGUI extends Baseframe implements ActionListener {
         };
         currentbalancField.setOpaque(false);
         currentbalancField.setBorder(BorderFactory.createEmptyBorder());
-        currentbalancField.setBounds(15, 120, getWidth() - 45, 40);
+        currentbalancField.setBounds(15, 120, getWidth() - 420, 40);
         currentbalancField.setFont(new Font("Dialog", Font.BOLD, 28));
         currentbalancField.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -88,7 +106,7 @@ public class BankingAppGUI extends Baseframe implements ActionListener {
 
         /* ----------------------------Add buttons--------------------------- */
         JButton depositButoon = new JButton("Deposit");
-        depositButoon.setBounds(15, 180, getWidth() - 45, 50);
+        depositButoon.setBounds(15, 180, getWidth() - 420, 50);
         depositButoon.setFont(new Font("Dialog", Font.BOLD, 22));
         depositButoon.setBackground(new Color(0, 81, 255));
         depositButoon.setForeground(Color.WHITE);
@@ -110,7 +128,7 @@ public class BankingAppGUI extends Baseframe implements ActionListener {
         });
 
         JButton withdrawlButton = new JButton("Withdraw");
-        withdrawlButton.setBounds(15, 250, getWidth() - 45, 50);
+        withdrawlButton.setBounds(15, 250, getWidth() - 420, 50);
         withdrawlButton.setFont(new Font("Dialog", Font.BOLD, 22));
         withdrawlButton.setBackground(new Color(35, 233, 18));
         withdrawlButton.setForeground(Color.WHITE);
@@ -128,11 +146,13 @@ public class BankingAppGUI extends Baseframe implements ActionListener {
             public void mouseExited(MouseEvent e) {
                 withdrawlButton.setBorder(BorderFactory.createRaisedBevelBorder());
             }
+            
 
         });
+        
 
         JButton pastTransactionButton = new JButton("Show Transactions");
-        pastTransactionButton.setBounds(15, 320, getWidth() - 45, 50);
+        pastTransactionButton.setBounds(15, 320, getWidth() - 420, 50);
         pastTransactionButton.setFont(new Font("Dialog", Font.BOLD, 22));
         pastTransactionButton.setBackground(new Color(213, 194, 0));
         pastTransactionButton.setForeground(Color.WHITE);
@@ -154,7 +174,7 @@ public class BankingAppGUI extends Baseframe implements ActionListener {
         });
 
         JButton transferButton = new JButton("Transfer");
-        transferButton.setBounds(15, 390, getWidth() - 45, 50);
+        transferButton.setBounds(15, 390, getWidth() - 420, 50);
         transferButton.setFont(new Font("Dialog", Font.BOLD, 22));
         transferButton.setBackground(new Color(99, 0, 255));
         transferButton.setForeground(Color.WHITE);
@@ -176,7 +196,7 @@ public class BankingAppGUI extends Baseframe implements ActionListener {
         });
 
         JButton logoutButton = new JButton("Logout");
-        logoutButton.setBounds(15, 500, getWidth() - 45, 50);
+        logoutButton.setBounds(15, 500, getWidth() - 420, 50);
         logoutButton.setFont(new Font("Dialog", Font.BOLD, 22));
         logoutButton.setBackground(new Color(255, 0, 0));
         logoutButton.setForeground(Color.WHITE);
@@ -239,8 +259,16 @@ public class BankingAppGUI extends Baseframe implements ActionListener {
             if (Buttonpressed.equalsIgnoreCase("Transfer")) {
                 bankingAppDialog.addUserField();
             }
+            if (Buttonpressed.equalsIgnoreCase("Withdraw")) {
+                bankingAppDialog.addRadiobutton();
+            }
+            if (Buttonpressed.equalsIgnoreCase("beneficiaryLabel")) {
+                bankingAppDialog.addUserField();
+            }
+           
 
-        } else if (Buttonpressed.equalsIgnoreCase("Show Transactions")) {
+        } 
+        else if (Buttonpressed.equalsIgnoreCase("Show Transactions")) {
             bankingAppDialog.addPastTransactionComponenets();
         }
         // make the app dilog visible
