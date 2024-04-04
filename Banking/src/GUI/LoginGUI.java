@@ -44,28 +44,58 @@ public class LoginGUI extends Baseframe {
         ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\user (2).png");
         JLabel imgLabel = new JLabel();
         imgLabel.setIcon(icon);
-        imgLabel.setBounds(150, 80, 200, 150);
+        imgLabel.setBounds(550, 80, 200, 150);
+
+        ImageIcon icon2 = new ImageIcon("Banking\\src\\MEDIA\\bank.png");
+        JLabel imgLabel2 = new JLabel();
+        imgLabel2.setIcon(icon2);
+        imgLabel2.setBounds(75, 8, 500, 550);
+        add(imgLabel2);
 
         // create Banking app label
-        JLabel BankingApplicationlabel = new JLabel("<html><u>Banking Appilcation</u></html>");
-        BankingApplicationlabel.setBounds(28, 20, 350, 50);
+        JLabel BankingApplicationlabel = new JLabel("<html>Login</html>");
+        BankingApplicationlabel.setBounds(428, 20, 350, 50);
         BankingApplicationlabel.setHorizontalAlignment(SwingConstants.CENTER);
         BankingApplicationlabel.setForeground(Color.WHITE);
-        BankingApplicationlabel.setFont(new Font("Arial Black", Font.PLAIN, 25));
+        BankingApplicationlabel.setFont(new Font("Arial Black", Font.PLAIN, 35));
+
+
+        JLabel BankingApplicationlabel2 = new JLabel("<html><u>Banking Appilcation</u></html>");
+        BankingApplicationlabel2.setBounds(30, 450, 350, 50);
+        BankingApplicationlabel2.setHorizontalAlignment(SwingConstants.CENTER);
+        BankingApplicationlabel2.setForeground(Color.WHITE);
+        BankingApplicationlabel2.setFont(new Font("Arial Black", Font.PLAIN, 30));
+
+        add(BankingApplicationlabel2);
 
         JPanel panel1 = new JPanel();
-        panel1.setBounds(0, 22, 500, 50);
+        panel1.setBounds(400, 22, 480, 50);
         panel1.setBackground(new Color(0, 0, 0, 95));
+
+        JPanel panel2 = new JPanel();
+        panel2.setBounds(0,0,400,450);
+        panel2.setBackground(new Color(249, 249, 249));
+        add(panel2);
+
+        JPanel panel3 = new JPanel();
+        panel3.setBounds(0,450,400,50);
+        panel3.setBackground(new Color(0, 0, 0, 95));
+        add(panel3);
+
+        JPanel panel4 = new JPanel();
+        panel4.setBounds(0,500,400,100);
+        panel4.setBackground(new Color(249, 249, 249));
+        add(panel4);
 
         // create Username Label
         JLabel Usernamelabel = new JLabel("Username: ");
-        Usernamelabel.setBounds(18, 260, 120, 55);
+        Usernamelabel.setBounds(408, 260, 120, 55);
         Usernamelabel.setForeground(Color.WHITE);
         Usernamelabel.setFont(new Font("Agency FB", Font.BOLD, 30));
 
         // create Username TextField
         JTextField UsernameField = new JTextField();
-        UsernameField.setBounds(140, 282, 250, 25);
+        UsernameField.setBounds(530, 282, 250, 25);
         UsernameField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.BLACK));
         UsernameField.setFont(new Font("Arial", Font.PLAIN, 15));
         UsernameField.setForeground(Color.decode("#FDEA00"));
@@ -94,13 +124,13 @@ public class LoginGUI extends Baseframe {
         });
         // create Password Label
         JLabel Passwordlabel = new JLabel("Password: ");
-        Passwordlabel.setBounds(18, 360, 120, 55);
+        Passwordlabel.setBounds(408, 360, 120, 55);
         Passwordlabel.setForeground(Color.WHITE);
         Passwordlabel.setFont(new Font("Agency FB", Font.BOLD, 30));
 
         // create Password TextField
         JPasswordField PasswordField = new JPasswordField();
-        PasswordField.setBounds(140, 380, 250, 25);
+        PasswordField.setBounds(530, 380, 250, 25);
         PasswordField.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.BLACK));
         PasswordField.setFont(new Font("Arial", Font.PLAIN, 15));
         PasswordField.setForeground(Color.decode("#FDEA00"));
@@ -130,7 +160,7 @@ public class LoginGUI extends Baseframe {
 
         // show password
         JCheckBox showpassword = new JCheckBox("Show Password");
-        showpassword.setBounds(280, 420, 150, 20);
+        showpassword.setBounds(675, 420, 150, 20);
         showpassword.setOpaque(false);
         showpassword.setBorder(BorderFactory.createEmptyBorder());
         showpassword.setForeground(Color.WHITE);
@@ -149,7 +179,7 @@ public class LoginGUI extends Baseframe {
 
         // create Gui close button
         JButton closeButton = new JButton("x");
-        closeButton.setBounds(394, -5, 30, 26);
+        closeButton.setBounds(772, -5, 30, 26);
         closeButton.setBackground(Color.decode("#3F22DD"));
         closeButton.setForeground(Color.RED);
         closeButton.setFont(new Font("Arial Black", Font.PLAIN, 18));
@@ -176,18 +206,17 @@ public class LoginGUI extends Baseframe {
                         "<html><h2 style=\"color: black; font-family:Roboto;\">Do you want to exit it ?</h2></html>",
                         "", JOptionPane.YES_NO_OPTION, getDefaultCloseOperation(), icon);
                 if (a == JOptionPane.YES_OPTION) {
-                    dispose();
-                  
-                    ImageIcon icon8 = new ImageIcon("Banking\\src\\MEDIA\\icons8-smiling-80.png");
-                    JOptionPane.showMessageDialog(LoginGUI.this,
-                            "<html><p style=\"color:red; font-size:25px; font-family:Agency FB; text-align:center;\">'Thank You'<br></p> <p style=\"color:black; font-size:15px; \">For using our Application</p></html>",
-                            ":)", getDefaultCloseOperation(), icon8);
-                    System.exit(0);
+                    // dispose this GUI
+                  LoginGUI.this.dispose();
+                  // Launch Greeting GUI
+                  new GreetingGUI().setVisible(true);
+                   
                             
                 } else if (a == JOptionPane.NO_OPTION) {
                     // Nothing changes, just closes the dialog box
                 } else {
-                    // Nothing changes, just close the dialog box
+                   
+                    return;
                 }
 
             }
@@ -196,7 +225,7 @@ public class LoginGUI extends Baseframe {
 
         // create Login Button
         JButton LoginButton = new JButton("𝐋𝐨𝐠𝐢𝐧");
-        LoginButton.setBounds(150, 495, 100, 40);
+        LoginButton.setBounds(550, 495, 100, 40);
         LoginButton.setFont(new Font("", Font.BOLD, 22));
         LoginButton.setBackground(Color.RED);
         LoginButton.setForeground(Color.WHITE);
@@ -231,6 +260,7 @@ public class LoginGUI extends Baseframe {
                     ImageIcon icon5 = new ImageIcon("Banking\\src\\MEDIA\\icons8-keyboard-50.png");
                     JOptionPane.showMessageDialog(LoginGUI.this, "Please Enter the empty fields !", "",
                             getDefaultCloseOperation(), icon5);
+                            
                 } else if (username.equals("") && !password.equals("")) {
                     ImageIcon icon5 = new ImageIcon( "Banking\\src\\MEDIA\\icons8-keyboard-50.png");
                     JOptionPane.showMessageDialog(LoginGUI.this, "Please Enter the Username...", "",
@@ -265,7 +295,7 @@ public class LoginGUI extends Baseframe {
 
         // create Register Label
         JLabel Registerlabel = new JLabel("<html><u>Don't have an Account ? Register here...</u></html>");
-        Registerlabel.setBounds(60, 560, 350, 27);
+        Registerlabel.setBounds(460, 560, 350, 27);
         Registerlabel.setForeground(Color.WHITE);
         Registerlabel.setFont(new Font("Dialog", Font.BOLD, 16));
         Registerlabel.addMouseListener(new MouseAdapter() {
