@@ -42,28 +42,56 @@ public class RegisterGUI extends Baseframe {
         ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\icons8-registration-100.png");
         JLabel imgLabel = new JLabel();
         imgLabel.setIcon(icon);
-        imgLabel.setBounds(180, 72, 200, 150);
+        imgLabel.setBounds(555, 68, 200, 150);
 
         // create Banking app label
-        JLabel BankingApplicationlabel = new JLabel("<html><u>Banking Appilcation</u></html>");
-        BankingApplicationlabel.setBounds(28, 20, 350, 50);
+        JLabel BankingApplicationlabel = new JLabel("<html>Register</html>");
+        BankingApplicationlabel.setBounds(428, 20, 350, 50);
         BankingApplicationlabel.setHorizontalAlignment(SwingConstants.CENTER);
         BankingApplicationlabel.setForeground(Color.WHITE);
-        BankingApplicationlabel.setFont(new Font("Arial Black", Font.PLAIN, 25));
+        BankingApplicationlabel.setFont(new Font("Arial Black", Font.PLAIN, 30));
+        
+        ImageIcon icon2 = new ImageIcon("Banking\\src\\MEDIA\\bank.png");
+        JLabel imgLabel2 = new JLabel();
+        imgLabel2.setIcon(icon2);
+        imgLabel2.setBounds(75, 8, 500, 550);
+        add(imgLabel2);
+
+        JLabel BankingApplicationlabel2 = new JLabel("<html><u>Banking Appilcation</u></html>");
+        BankingApplicationlabel2.setBounds(30, 450, 350, 50);
+        BankingApplicationlabel2.setHorizontalAlignment(SwingConstants.CENTER);
+        BankingApplicationlabel2.setForeground(Color.WHITE);
+        BankingApplicationlabel2.setFont(new Font("Arial Black", Font.PLAIN, 30));
+        add(BankingApplicationlabel2);
 
         JPanel panel1 = new JPanel();
-        panel1.setBounds(0, 22, 500, 50);
+        panel1.setBounds(400, 22, 480, 50);
         panel1.setBackground(new Color(0, 0, 0, 150));
+
+        JPanel panel2 = new JPanel();
+        panel2.setBounds(0,0,400,450);
+        panel2.setBackground(new Color(249, 249, 249));
+        add(panel2);
+
+        JPanel panel3 = new JPanel();
+        panel3.setBounds(0,450,400,50);
+        panel3.setBackground(new Color(0, 0, 0, 95));
+        add(panel3);
+
+        JPanel panel4 = new JPanel();
+        panel4.setBounds(0,500,400,100);
+        panel4.setBackground(new Color(249, 249, 249));
+        add(panel4);
 
         // create Username Label
         JLabel Usernamelabel = new JLabel("Username: ");
-        Usernamelabel.setBounds(18, 170, 150, 55);
+        Usernamelabel.setBounds(409, 170, 150, 55);
         Usernamelabel.setForeground(Color.WHITE);
         Usernamelabel.setFont(new Font("Agency FB", Font.BOLD, 30));
 
         // create Username TextField
         JTextField UsernameField = new JTextField();
-        UsernameField.setBounds(18, 222, 370, 30);
+        UsernameField.setBounds(410, 222, 370, 30);
         UsernameField.setBorder(BorderFactory.createLoweredBevelBorder());
         UsernameField.setFont(new Font("Arial", Font.PLAIN, 15));
         UsernameField.setForeground(Color.BLACK);
@@ -98,13 +126,13 @@ public class RegisterGUI extends Baseframe {
 
         // create Password Label
         JLabel Passwordlabel = new JLabel("Password: ");
-        Passwordlabel.setBounds(18, 270, 150, 55);
+        Passwordlabel.setBounds(409, 270, 150, 55);
         Passwordlabel.setForeground(Color.WHITE);
         Passwordlabel.setFont(new Font("Agency FB", Font.BOLD, 30));
 
         // create Password TextField
         JPasswordField PasswordField = new JPasswordField();
-        PasswordField.setBounds(18, 320, 370, 30);
+        PasswordField.setBounds(410, 320, 370, 30);
         PasswordField.setBorder(BorderFactory.createLoweredBevelBorder());
         PasswordField.setFont(new Font("Arial", Font.PLAIN, 15));
         PasswordField.setForeground(Color.BLACK);
@@ -135,13 +163,13 @@ public class RegisterGUI extends Baseframe {
 
         // create Confirm-Password Label
         JLabel ConfirmPasswordlabel = new JLabel("Confirm-Password: ");
-        ConfirmPasswordlabel.setBounds(18, 365, 200, 55);
+        ConfirmPasswordlabel.setBounds(409, 365, 200, 55);
         ConfirmPasswordlabel.setForeground(Color.WHITE);
         ConfirmPasswordlabel.setFont(new Font("Agency FB", Font.BOLD, 30));
 
         // create Confirm-Password TextField
         JPasswordField ConfirmPasswordField = new JPasswordField();
-        ConfirmPasswordField.setBounds(18, 420, 370, 30);
+        ConfirmPasswordField.setBounds(410, 420, 370, 30);
         ConfirmPasswordField.setBorder(BorderFactory.createLoweredBevelBorder());
         ConfirmPasswordField.setFont(new Font("Arial", Font.PLAIN, 15));
         ConfirmPasswordField.setForeground(Color.BLACK);
@@ -172,7 +200,7 @@ public class RegisterGUI extends Baseframe {
 
         // create Gui close button
         JButton closeButton = new JButton("x");
-        closeButton.setBounds(394, -5, 30, 26);
+        closeButton.setBounds(772, -5, 30, 26);
         closeButton.setBackground(Color.decode("#3F22DD"));
         closeButton.setForeground(Color.RED);
         closeButton.setFont(new Font("Arial Black", Font.PLAIN, 18));
@@ -196,10 +224,10 @@ public class RegisterGUI extends Baseframe {
                 ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\icons8-question-mark-64.png");
                 int a = JOptionPane.showConfirmDialog(RegisterGUI.this, "<html><p style=\"color: black; font-family: Roboto; font-size:15px\">Do you want to exit it ?</p></html>","",JOptionPane.YES_NO_OPTION,getDefaultCloseOperation(),icon);
                 if (a == JOptionPane.YES_OPTION) {
-                  dispose();
-                  ImageIcon icon8 = new ImageIcon("Banking\\src\\MEDIA\\icons8-smiling-80.png");
-                  JOptionPane.showMessageDialog(RegisterGUI.this, "<html><p style=\"color:red; font-size:25px; font-family:Agency FB; text-align:center;\">'Thank You'<br></p> <p style=\"color:black; font-size:15px;\">For using our Application</p></html>", ":)", getDefaultCloseOperation(), icon8);
-                  System.exit(0);
+                     // dispose this GUI
+                     RegisterGUI.this.dispose();
+                     // Launch Greeting GUI
+                     new GreetingGUI().setVisible(true);
                 }  
                 else if (a == JOptionPane.NO_OPTION) {
                   //Nothing changes, just closes the dialog box
@@ -213,7 +241,7 @@ public class RegisterGUI extends Baseframe {
 
         // create Register Button
         JButton RegisterButton = new JButton("Register");
-        RegisterButton.setBounds(150, 490, 120, 40);
+        RegisterButton.setBounds(530, 505, 120, 40);
         RegisterButton.setFont(new Font("", Font.BOLD, 22));
         RegisterButton.setBackground(Color.RED);
         RegisterButton.setForeground(Color.WHITE);
@@ -283,10 +311,13 @@ public class RegisterGUI extends Baseframe {
                     JOptionPane.showMessageDialog(RegisterGUI.this, "Please Enter the empty fields...", "(empty)", getDefaultCloseOperation(), icon5);
                 }
 
+                
+                
+                
                 // we will need to the validate user input
                 else if (ValidateUserInput(username, password, repassword)) {
-                   // else if(ValidateUserInput(password, repassword)){
-                        
+                     if (validatePassword(password)){
+                        //if true- registration successfully
                     if (MyJDBC.register(username, password)) {
                         // register success
                         // dispose of this GUI
@@ -307,25 +338,31 @@ public class RegisterGUI extends Baseframe {
                                 getDefaultCloseOperation(), icon);
                     }
 
-                    
-
-
-
                 } else {
+                    //if false- registration failed and show this message
+                    ImageIcon icon1 = new ImageIcon("Banking\\src\\MEDIA\\icons8-warning-50.png");
+                  JOptionPane.showMessageDialog(RegisterGUI.this, "<html><p style=\"color:red; font-size:15px; font-style: bold; font-family: Calibri; text-align: center;\">Please Enter a Strong Password...<br></p> <p style=\"color:black; font-size:11px;\">Make sure it's atleast 7 characters long, including a (1)number,</p>" + 
+                  "<p style=\"color:black; font-size:11px;\"> (1)lowercase and (1)uppercase letter.</p></html>","😑",getDefaultCloseOperation(),icon1);
+                }
+                
+            }
+            else{
                     ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\icons8-warning-50.png");
                     // Invalid userInput
                     JOptionPane.showMessageDialog(RegisterGUI.this,
                             "ERROR: username must be 6 characters Long\n" +
                                     "or/and password must be matched",
                             "Oops !", getDefaultCloseOperation(), icon);
-                }
-            }
+                    }
+           
+         }
+            
 
         });
 
         // create Register Label
         JLabel Registerlabel = new JLabel("<html><u>Already have an Account? Login here...</u></html>");
-        Registerlabel.setBounds(60, 550, 350, 27);
+        Registerlabel.setBounds(450, 560, 350, 27);
         Registerlabel.setForeground(Color.WHITE);
         Registerlabel.setFont(new Font("Dialog", Font.BOLD, 16));
         Registerlabel.addMouseListener(new MouseAdapter() {
@@ -371,7 +408,7 @@ public class RegisterGUI extends Baseframe {
         }
 
         // username has to be atleast 6 characters Long
-        if (username.length() <= 6) {
+        if (username.length() < 6) {
             return false;
         }
 
@@ -383,11 +420,50 @@ public class RegisterGUI extends Baseframe {
         return true;
     }
 
-    private boolean ValidateUserInput(String password, String repassword){
-        if (!password.equals(repassword)) {
-            return false;
-        }
+   
 
-        return true;
+    //validation password
+    private static boolean validatePassword(String password){
+        if (password.length() < 7) {
+         if (checkPassword(password)) {
+            return false;
+            
+         }else{
+          
+            return false;
+         }   
+        }
+        else{
+         
+            return true;
+        }
+    }
+
+    //password validate conditions
+    private static boolean checkPassword(String password){
+        boolean hasNum = false; 
+        boolean hasCap = false;
+        boolean hasLow = false;
+        char c;
+        for (int i = 0; i < password.length(); i++) {
+            c = password.charAt(i);
+            if (Character.isDigit(c)) {
+                hasNum = true;
+            }else if (Character.isUpperCase(c)) {
+                hasCap = true;
+            
+            }else if (Character.isLowerCase(c)) {
+                hasLow = true;
+
+                
+            }
+            if (hasNum && hasCap && hasLow) {
+                return true;
+                
+            }
+             
+            
+        }
+        return false;
     }
 }
