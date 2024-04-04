@@ -93,16 +93,13 @@ public class SplashScreen extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                   
-                   
-                  //  doTask("Loading ...", 20);
                     doTask("Loading ...", 20);
                     doTask("Loading ...", 45);
                     doTask("Loading ...", 70);

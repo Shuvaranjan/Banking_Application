@@ -11,11 +11,13 @@ public class Run extends javax.swing.JFrame {
 
   public static void main(String args[]) {
 
-    /* Create and display the form */
+  
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
+        //display the GUI
         new splashscreen.SplashScreen(null, true).setVisible(true);
         new LoginGUI().setVisible(true);
+       
 
       }
     });
