@@ -19,6 +19,7 @@ public class GreetingGUI extends JFrame {
     /* create thank you greeting */
     public GreetingGUI() {
 
+        
         setSize(400, 200);
         setLocationRelativeTo(null);
         setLayout(null);

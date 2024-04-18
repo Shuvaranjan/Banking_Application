@@ -21,6 +21,7 @@ public abstract class Baseframe extends JFrame {
         // instantiate JFrame properties and add to the title bar
         setTitle(title);
 
+        
         // set size (pixels)
         setSize(800, 600);
 

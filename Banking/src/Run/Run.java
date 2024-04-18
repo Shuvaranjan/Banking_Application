@@ -2,6 +2,7 @@
 package Run;
 
 import java.math.BigDecimal;
+
 import Database.User;
 import GUI.BankingAppGUI;
 import GUI.LoginGUI;
@@ -16,8 +17,12 @@ public class Run extends javax.swing.JFrame {
       public void run() {
         //display the GUI
         new splashscreen.SplashScreen(null, true).setVisible(true);
+        //new Sample().setVisible(true);
         new LoginGUI().setVisible(true);
-       
+        //new RegisterGUI().setVisible(true);
+        //FlatLaf.registerCustomDefaultsSource("GUI.theme");
+        //FlatMacDarkLaf.setup();
+        //new Application().setVisible(true);
 
       }
     });

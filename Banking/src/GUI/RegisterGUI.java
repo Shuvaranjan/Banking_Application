@@ -13,6 +13,8 @@ import java.awt.*;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,10 +31,86 @@ public class RegisterGUI extends Baseframe {
 
     public RegisterGUI() {
         super("");
+        init();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+       // setDefaultLookAndFeelDecorated(true);
+       setBounds(0,0,1610,900);
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        Container pane = getContentPane();
+        pane.setLayout(null);
+        pane.setBackground(Color.BLUE);
+
+       
+
+
+     
+        JPanel p3 = new RoundedPanel2(30);
+        p3.setBounds(750,85,500,680);
+        p3.setOpaque(false);
+        pane.add(p3);
+
+      
         getContentPane().setBackground(Color.decode("#3F22DD"));
         // hide the title bar
         setUndecorated(true);
+
+    
     }
+    private void init() {
+        JButton button = new JButton("X");
+         button.setBounds(500,50,50,50);
+        //add(button);
+    }
+    class RoundedPanel2 extends JPanel
+    {
+        private Color backgroundColor;
+        private int cornerRadius = 20;
+
+        public RoundedPanel2(LayoutManager layout, int radius) {
+            super(layout);
+            cornerRadius = radius;
+        }
+
+        public RoundedPanel2(LayoutManager layout, int radius, Color bgColor) {
+            super(layout);
+            cornerRadius = radius;
+            backgroundColor = bgColor;
+        }
+
+        public RoundedPanel2(int radius) {
+            super();
+            cornerRadius = radius;
+        }
+
+        public RoundedPanel2(int radius, Color bgColor) {
+            super();
+            cornerRadius = radius;
+            backgroundColor = bgColor;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Dimension arcs = new Dimension(cornerRadius, cornerRadius);
+            int width = getWidth();
+            int height = getHeight();
+            Graphics2D graphics = (Graphics2D) g;
+            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            //Draws the rounded panel with borders.
+            if (backgroundColor != null) {
+                graphics.setColor(backgroundColor);
+            } else {
+                graphics.setColor(getBackground());
+            }
+            graphics.fillRoundRect(1, 0, width-1, height-1, arcs.width, arcs.height); //paint background
+            graphics.setColor(Color.WHITE);
+            graphics.drawRoundRect(1, 0, width-1, height-1, arcs.width, arcs.height); //paint border
+        }
+    }   
+    
 
     @Override
     protected void addGuiComponents() {
@@ -42,59 +120,47 @@ public class RegisterGUI extends Baseframe {
         ImageIcon icon = new ImageIcon("Banking\\src\\MEDIA\\icons8-registration-100.png");
         JLabel imgLabel = new JLabel();
         imgLabel.setIcon(icon);
-        imgLabel.setBounds(555, 68, 200, 150);
+        imgLabel.setBounds(950, 180, 200, 150);
 
         // create Banking app label
         JLabel BankingApplicationlabel = new JLabel("<html>Register</html>");
-        BankingApplicationlabel.setBounds(428, 20, 350, 50);
+        BankingApplicationlabel.setBounds(820, 120, 350, 50);
         BankingApplicationlabel.setHorizontalAlignment(SwingConstants.CENTER);
         BankingApplicationlabel.setForeground(Color.WHITE);
         BankingApplicationlabel.setFont(new Font("Arial Black", Font.PLAIN, 30));
         
-        ImageIcon icon2 = new ImageIcon("Banking\\src\\MEDIA\\bank.png");
+        ImageIcon icon2 = new ImageIcon("Banking\\src\\MEDIA\\bank (1).png");
         JLabel imgLabel2 = new JLabel();
         imgLabel2.setIcon(icon2);
-        imgLabel2.setBounds(75, 8, 500, 550);
+        imgLabel2.setBounds(375, 80, 500, 550);
         add(imgLabel2);
 
         JLabel BankingApplicationlabel2 = new JLabel("<html><u>Banking Appilcation</u></html>");
-        BankingApplicationlabel2.setBounds(30, 450, 350, 50);
+        BankingApplicationlabel2.setBounds(330, 550, 350, 50);
         BankingApplicationlabel2.setHorizontalAlignment(SwingConstants.CENTER);
         BankingApplicationlabel2.setForeground(Color.WHITE);
         BankingApplicationlabel2.setFont(new Font("Arial Black", Font.PLAIN, 30));
         add(BankingApplicationlabel2);
 
         JPanel panel1 = new JPanel();
-        panel1.setBounds(400, 22, 480, 50);
+        panel1.setBounds(750, 120, 500, 50);
         panel1.setBackground(new Color(0, 0, 0, 150));
 
-        JPanel panel2 = new JPanel();
-        panel2.setBounds(0,0,400,450);
-        panel2.setBackground(new Color(249, 249, 249));
-        add(panel2);
-
-        JPanel panel3 = new JPanel();
-        panel3.setBounds(0,450,400,50);
-        panel3.setBackground(new Color(0, 0, 0, 95));
-        add(panel3);
-
-        JPanel panel4 = new JPanel();
-        panel4.setBounds(0,500,400,100);
-        panel4.setBackground(new Color(249, 249, 249));
-        add(panel4);
+      
 
         // create Username Label
         JLabel Usernamelabel = new JLabel("Username: ");
-        Usernamelabel.setBounds(409, 170, 150, 55);
-        Usernamelabel.setForeground(Color.WHITE);
+        Usernamelabel.setBounds(790, 300, 120, 55);
+        Usernamelabel.setForeground(Color.BLACK);
         Usernamelabel.setFont(new Font("Agency FB", Font.BOLD, 30));
 
         // create Username TextField
         JTextField UsernameField = new JTextField();
-        UsernameField.setBounds(410, 222, 370, 30);
+        UsernameField.setBounds(790, 350, 400, 25);
         UsernameField.setBorder(BorderFactory.createLoweredBevelBorder());
         UsernameField.setFont(new Font("Arial", Font.PLAIN, 15));
-        UsernameField.setForeground(Color.BLACK);
+        UsernameField.setForeground(Color.decode("#FF5A00"));
+        UsernameField.setOpaque(false);
         UsernameField.setBackground(Color.white);
         UsernameField.addMouseListener(new MouseAdapter() {
 
@@ -126,16 +192,17 @@ public class RegisterGUI extends Baseframe {
 
         // create Password Label
         JLabel Passwordlabel = new JLabel("Password: ");
-        Passwordlabel.setBounds(409, 270, 150, 55);
-        Passwordlabel.setForeground(Color.WHITE);
+        Passwordlabel.setBounds(790, 380, 120, 55);
+        Passwordlabel.setForeground(Color.BLACK);
         Passwordlabel.setFont(new Font("Agency FB", Font.BOLD, 30));
 
         // create Password TextField
         JPasswordField PasswordField = new JPasswordField();
-        PasswordField.setBounds(410, 320, 370, 30);
+        PasswordField.setBounds(790, 430, 400, 25);
         PasswordField.setBorder(BorderFactory.createLoweredBevelBorder());
         PasswordField.setFont(new Font("Arial", Font.PLAIN, 15));
-        PasswordField.setForeground(Color.BLACK);
+        PasswordField.setForeground(Color.decode("#FF5A00"));
+        PasswordField.setOpaque(false);
         PasswordField.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -163,16 +230,17 @@ public class RegisterGUI extends Baseframe {
 
         // create Confirm-Password Label
         JLabel ConfirmPasswordlabel = new JLabel("Confirm-Password: ");
-        ConfirmPasswordlabel.setBounds(409, 365, 200, 55);
-        ConfirmPasswordlabel.setForeground(Color.WHITE);
+        ConfirmPasswordlabel.setBounds(790, 470, 200, 55);
+        ConfirmPasswordlabel.setForeground(Color.BLACK);
         ConfirmPasswordlabel.setFont(new Font("Agency FB", Font.BOLD, 30));
 
         // create Confirm-Password TextField
         JPasswordField ConfirmPasswordField = new JPasswordField();
-        ConfirmPasswordField.setBounds(410, 420, 370, 30);
+        ConfirmPasswordField.setBounds(790, 520, 400, 25);
         ConfirmPasswordField.setBorder(BorderFactory.createLoweredBevelBorder());
         ConfirmPasswordField.setFont(new Font("Arial", Font.PLAIN, 15));
-        ConfirmPasswordField.setForeground(Color.BLACK);
+        ConfirmPasswordField.setForeground(Color.decode("#FF5A00"));
+        ConfirmPasswordField.setOpaque(false);
         ConfirmPasswordField.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -198,11 +266,32 @@ public class RegisterGUI extends Baseframe {
             
         });
 
+         // show password
+        JCheckBox showpassword = new JCheckBox("Show Password");
+        showpassword.setBounds(1080, 560, 150, 20);
+        showpassword.setOpaque(false);
+        showpassword.setBorder(BorderFactory.createEmptyBorder());
+        showpassword.setForeground(Color.BLACK);
+        showpassword.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (showpassword.isSelected()) {
+                    PasswordField.setEchoChar((char) 0);
+                    ConfirmPasswordField.setEchoChar((char)0);
+                } else {
+                    PasswordField.setEchoChar('•');
+                    ConfirmPasswordField.setEchoChar('•');
+                }
+            }
+
+        });
+
         // create Gui close button
         JButton closeButton = new JButton("x");
-        closeButton.setBounds(772, -5, 30, 26);
+        closeButton.setBounds(1510, -5, 30, 26);
         closeButton.setBackground(Color.decode("#3F22DD"));
-        closeButton.setForeground(Color.RED);
+        closeButton.setForeground(Color.WHITE);
         closeButton.setFont(new Font("Arial Black", Font.PLAIN, 18));
         closeButton.setBorder(BorderFactory.createEmptyBorder());
         closeButton.addMouseListener(new MouseAdapter() {
@@ -238,10 +327,43 @@ public class RegisterGUI extends Baseframe {
             }
 
         });
+        JButton minimizeButton = new JButton("_");
+        minimizeButton.setBounds(1470, -5, 30, 24);
+        minimizeButton.setBackground(Color.decode("#3F22DD"));
+        minimizeButton.setForeground(Color.WHITE);
+        minimizeButton.setFont(new Font("Arial Black", Font.PLAIN, 18));
+        minimizeButton.setBorder(BorderFactory.createEmptyBorder());
+        minimizeButton.addMouseListener(new MouseAdapter() {
+
+          
+
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                minimizeButton.setBackground(Color.decode("#000000"));
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                minimizeButton.setBackground(Color.decode("#3F22DD"));
+            }
+
+            
+        });
+        minimizeButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               setExtendedState(JFrame.ICONIFIED);
+            }
+            
+        });
+
+       add(minimizeButton);
+
 
         // create Register Button
         JButton RegisterButton = new JButton("Register");
-        RegisterButton.setBounds(530, 505, 120, 40);
+        RegisterButton.setBounds(930, 652, 120, 40);
         RegisterButton.setFont(new Font("", Font.BOLD, 22));
         RegisterButton.setBackground(Color.RED);
         RegisterButton.setForeground(Color.WHITE);
@@ -251,7 +373,7 @@ public class RegisterGUI extends Baseframe {
 
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                RegisterButton.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.WHITE));
+                RegisterButton.setBorder(BorderFactory.createMatteBorder(3,3,3,3, Color.decode("#FFE800")));
             }
 
             @Override
@@ -362,8 +484,8 @@ public class RegisterGUI extends Baseframe {
 
         // create Register Label
         JLabel Registerlabel = new JLabel("<html><u>Already have an Account? Login here...</u></html>");
-        Registerlabel.setBounds(450, 560, 350, 27);
-        Registerlabel.setForeground(Color.WHITE);
+        Registerlabel.setBounds(850, 700, 350, 27);
+        Registerlabel.setForeground(Color.BLACK);
         Registerlabel.setFont(new Font("Dialog", Font.BOLD, 16));
         Registerlabel.addMouseListener(new MouseAdapter() {
 
@@ -374,7 +496,7 @@ public class RegisterGUI extends Baseframe {
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-                Registerlabel.setForeground(Color.WHITE);
+                Registerlabel.setForeground(Color.BLACK);
             }
 
             @Override
@@ -398,6 +520,7 @@ public class RegisterGUI extends Baseframe {
         add(Registerlabel);
         add(closeButton);
         add(imgLabel);
+        add(showpassword);
 
     }
 
@@ -424,9 +547,9 @@ public class RegisterGUI extends Baseframe {
 
     //validation password
     private static boolean validatePassword(String password){
-        if (password.length() < 7) {
+        if (password.length() >= 7) {
          if (checkPassword(password)) {
-            return false;
+            return true;
             
          }else{
           
@@ -435,7 +558,7 @@ public class RegisterGUI extends Baseframe {
         }
         else{
          
-            return true;
+            return false;
         }
     }
 
